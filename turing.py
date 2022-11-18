@@ -18,9 +18,13 @@ class Turing():
         index, state = 0, self.inicial
         while True:
             if state in self.transicoes and self.fita[index] in self.transicoes[state]:
-                next_mov, self.fita[index], state = self.transicoes[state][self.fita[index]].get(state, self.fita[index])
+                prev_state = state
+                prev_fita = self.fita[index]
+                self.fita[index], next_mov, state = self.transicoes[state][self.fita[index]]
+                log.debug(f"estado:{prev_state}->{state}-move:{'DIR' if next_mov == DIR else 'ESQ'} -ler:{prev_fita} escrever:{self.fita[index]} ")
             else:
-                log.debug("rejeita!")
+                log.info(f"rejeita cadeia '{texto}'!")
+                log.info(f"fita: {self.fita}")
                 return False
                 break
             if self.fita[index] == FINAL:
@@ -28,24 +32,11 @@ class Turing():
             else:
                 index += next_mov
         if state in self.finais and self.fita[index] == FINAL:
-            log.debug("aceita!")
-            log.debug(f"fita: {self.fita}")
+            log.info(f"aceita cadeia '{texto}'!")
+            log.info(f"fita: {self.fita}")
             return True
         else:
-            log.debug("rejeita!")
-            log.debug(f"fita: {self.fita}")
+            log.info(f"rejeita cadeia '{texto}'!")
+            log.info(f"fita: {self.fita}")
             return False
-
-class estado():
-    def __init__(self, escrever, movimento, proximo):
-        self.escrever = escrever
-        self.movimento = movimento
-        self.proximo = proximo
-
-
-    def get(self, estado, letra):
-        log.debug(f"estado:{estado} -ler:{letra} escrever:{self.escrever}- "
-                  f"move: {'Direita' if self.movimento == DIR else 'Esquerda'},proximo:{self.proximo}")
-        letra = self.escrever
-        return self.movimento, letra, self.proximo
 
