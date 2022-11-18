@@ -1,9 +1,7 @@
 from log import log
 
-INICIO = '*'
-FINAL = None
-DIR = 1
-ESQ = -1
+INICIO, FINAL = '*', None
+ESQ, DIR = -1, 1
 
 class Turing():
     fita = []
@@ -23,7 +21,7 @@ class Turing():
                 self.fita[index], next_mov, state = self.transicoes[state][self.fita[index]]
                 log.debug(f"estado:{prev_state}->{state}-move:{'DIR' if next_mov == DIR else 'ESQ'} -ler:{prev_fita} escrever:{self.fita[index]} ")
             else:
-                log.info(f"rejeita cadeia '{texto}'!")
+                log.info(f"rejeita cadeia (estado invalido) '{texto}'!")
                 log.info(f"fita: {self.fita}")
                 return False
                 break
@@ -36,7 +34,7 @@ class Turing():
             log.info(f"fita: {self.fita}")
             return True
         else:
-            log.info(f"rejeita cadeia '{texto}'!")
+            log.info(f"rejeita cadeia(ñ final) '{texto}'!")
             log.info(f"fita: {self.fita}")
             return False
 
