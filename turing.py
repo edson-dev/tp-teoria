@@ -21,11 +21,11 @@ class Turing():
                 self.fita[index], next_mov, state = self.transicoes[state][self.fita[index]]
                 log.debug(f"estado:{prev_state}->{state}-move:{'DIR' if next_mov == DIR else 'ESQ'} -ler:{prev_fita} escrever:{self.fita[index]} ")
             else:
-                log.info(f"rejeita cadeia (estado invalido) '{texto}'!")
+                log.info(f"rejeita cadeia(estado invalido) '{texto}'!")
                 log.info(f"fita: {self.fita}")
                 return False
                 break
-            if self.fita[index] == FINAL:
+            if self.fita[index] == FINAL and next_mov is DIR:
                 break
             else:
                 index += next_mov
