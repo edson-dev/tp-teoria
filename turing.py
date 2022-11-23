@@ -16,8 +16,7 @@ class Turing():
         index, state = 0, self.inicial
         while True:
             if state in self.transicoes and self.fita[index] in self.transicoes[state]:
-                prev_state = state
-                prev_fita = self.fita[index]
+                prev_state, prev_fita = state, self.fita[index]
                 self.fita[index], next_mov, state = self.transicoes[state][self.fita[index]]
                 log.debug(f"estado:{prev_state}->{state}-move:{'DIR' if next_mov == DIR else 'ESQ'} -ler:{prev_fita} escrever:{self.fita[index]} ")
             else:
