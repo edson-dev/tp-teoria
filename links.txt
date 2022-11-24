@@ -1,0 +1,2 @@
+repositorio: https://github.com/edson-dev/tp-teoria
+video: https://www.youtube.com/watch?v=D_DTdAyKcZg&ab_channel=JuanAleixo
